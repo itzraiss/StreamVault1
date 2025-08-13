@@ -113,7 +113,7 @@ class ActeiaScraper:
 
     def _extract_featured(self, soup: BeautifulSoup) -> List[TitleItem]:
         featured: List[TitleItem] = []
-        for a in soup.select(".featured a[href], .slider a[href], .carousel a[href], a.featured"):
+        for a in soup.select(".featured a[href], .slider a[href], .carousel a[href], a.featured")[:60]:
             href = a.get("href")
             if not href:
                 continue
@@ -127,13 +127,14 @@ class ActeiaScraper:
         # Deduplicate by slug
         uniq = {}
         for it in featured:
-            uniq[it.slug] = it
+            if it.slug not in uniq:
+                uniq[it.slug] = it
         return list(uniq.values())[:20]
 
     def _extract_sections(self, soup: BeautifulSoup) -> List[Section]:
         sections: List[Section] = []
         # Try containers with headings and grids
-        containers = soup.select("section, .section, .block, .home-section, .module")
+        containers = soup.select("section, .section, .block, .home-section, .module")[:20]
         for cont in containers:
             heading = text_or_none(cont.select_one("h2, h3, .section-title, .widget-title"))
             if not heading:
@@ -150,7 +151,7 @@ class ActeiaScraper:
 
     def _extract_grid_items(self, root: BeautifulSoup) -> List[TitleItem]:
         items: List[TitleItem] = []
-        for a in root.select("a[href][title], .item a[href], .poster a[href], .thumb a[href], a.poster, a.item"):
+        for a in root.select("a[href][title], .item a[href], .poster a[href], .thumb a[href], a.poster, a.item")[:300]:
             href = a.get("href")
             if not href:
                 continue
@@ -168,7 +169,8 @@ class ActeiaScraper:
         # Deduplicate by slug
         uniq = {}
         for it in items:
-            uniq[it.slug] = it
+            if it.slug not in uniq:
+                uniq[it.slug] = it
         return list(uniq.values())
 
     def _extract_episodes(self, soup: BeautifulSoup) -> List[Episode]:

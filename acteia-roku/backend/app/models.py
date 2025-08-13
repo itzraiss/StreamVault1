@@ -1,5 +1,5 @@
 from __future__ import annotations
-from pydantic import BaseModel, HttpUrl
+from pydantic import BaseModel, HttpUrl, Field
 from typing import List, Optional, Dict, Any
 
 
@@ -42,23 +42,23 @@ class Section(BaseModel):
 
 
 class HomeResponse(BaseModel):
-    featured: List[TitleItem]
-    sections: List[Section]
+    featured: List[TitleItem] = Field(default_factory=list)
+    sections: List[Section] = Field(default_factory=list)
 
 
 class SearchResponse(BaseModel):
     query: str
-    items: List[TitleItem]
+    items: List[TitleItem] = Field(default_factory=list)
 
 
 class TitleDetails(BaseModel):
     item: TitleItem
     synopsis: Optional[str] = None
-    genres: List[str] = []
-    episodes: List[Episode] = []
-    extra: Dict[str, Any] = {}
+    genres: List[str] = Field(default_factory=list)
+    episodes: List[Episode] = Field(default_factory=list)
+    extra: Dict[str, Any] = Field(default_factory=dict)
 
 
 class StreamResponse(BaseModel):
     item_id: str
-    streams: List[VideoStream]
+    streams: List[VideoStream] = Field(default_factory=list)
