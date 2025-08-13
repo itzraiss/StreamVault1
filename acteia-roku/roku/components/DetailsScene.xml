@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="DetailsScene" extends="Group">
+    <interface>
+        <field id="slug" type="string" />
+    </interface>
+    <children>
+        <Label id="title" translation="[60,60]" font="font:LargeSystemFont" />
+        <Label id="synopsis" translation="[60,120]" width="1140" numLines="8" />
+        <RowList id="episodes" itemComponentName="PosterItem" translation="[60,420]" visible="false" />
+        <Button id="playBtn" translation="[60,360]" text="Reproduzir" />
+        <Button id="closeBtn" translation="[200,360]" text="Fechar" />
+    </children>
+    <script type="text/brightscript" uri="pkg:/source/Config.brs" />
+    <script type="text/brightscript" uri="pkg:/source/ApiClient.brs" />
+    <script type="text/brightscript" uri="pkg:/components/DetailsScene.brs" />
+</component>

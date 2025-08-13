@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="PosterItem" extends="Group">
+    <children>
+        <Poster id="poster" width="300" height="450" />
+        <Label id="label" translation="[0,460]" width="300" numLines="1" horizAlign="center" />
+    </children>
+    <script type="text/brightscript" uri="pkg:/components/PosterItem.brs" />
+</component>

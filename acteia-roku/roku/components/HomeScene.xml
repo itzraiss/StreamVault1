@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="HomeScene" extends="Scene">
+    <children>
+        <RowList id="rowList" itemComponentName="PosterItem" translation="[60,120]" />
+        <Label id="title" translation="[60,60]" text="Acteia" font="font:MediumSystemFont" />
+        <Button id="searchBtn" translation="[1200,60]" text="Buscar" />
+    </children>
+    <script type="text/brightscript" uri="pkg:/source/Config.brs" />
+    <script type="text/brightscript" uri="pkg:/source/ApiClient.brs" />
+    <script type="text/brightscript" uri="pkg:/source/SearchController.brs" />
+    <script type="text/brightscript" uri="pkg:/components/HomeScene.brs" />
+</component>
