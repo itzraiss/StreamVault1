@@ -1,0 +1,6 @@
+# Hugging Face Spaces metadata
+# Place this file at the root of the Space when using Docker
+# space_name: acteia-json-api
+sdk: docker
+sdk_version: 0.0.1
+app_port: 7860
