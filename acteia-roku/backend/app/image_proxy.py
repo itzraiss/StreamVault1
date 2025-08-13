@@ -14,6 +14,7 @@ async def fetch_and_resize_image(url: str, width: Optional[int], quality: int) -
     if cache_key in _image_cache:
         return _image_cache[cache_key]
 
+async def fetch_and_resize_image(url: str, width: Optional[int], quality: int) -> bytes:
     async with httpx.AsyncClient(timeout=10.0, follow_redirects=True) as client:
         resp = await client.get(url)
         if resp.status_code != 200:
@@ -32,4 +33,7 @@ async def fetch_and_resize_image(url: str, width: Optional[int], quality: int) -
         return result
     except Exception:
         _image_cache[cache_key] = data
+        return out.getvalue()
+    except Exception:
+        # Fallback: return original data
         return data

@@ -80,6 +80,7 @@ sub onSearch()
     if data = invalid then return
 
     ' Build a single row for results
+    ' Replace first row with search results
     row = CreateObject("roSGNode", "ContentNode")
     row.Title = "Busca: " + q
     for each it in data.items
@@ -99,4 +100,7 @@ sub onSearch()
         m.rowList.content = CreateObject("roSGNode", "ContentNode")
     end if
     m.rowList.content.InsertChild(0, row)
+    content = CreateObject("roSGNode", "ContentNode")
+    content.AppendChild(row)
+    m.rowList.content = content
 end sub

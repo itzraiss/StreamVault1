@@ -67,3 +67,4 @@ Sideload:
 - O backend ficará acessível em `https://<seu-space>.hf.space`.
 - No Roku, edite `roku/source/Config.brs` e configure:
   - `return "https://<seu-space>.hf.space"`
+- Search uses `roKeyboardScreen` integrated with SceneGraph.
