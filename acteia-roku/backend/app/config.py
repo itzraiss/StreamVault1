@@ -16,6 +16,9 @@ class Settings(BaseSettings):
     # Optional cookie for authenticated access (set from .env)
     AUTH_COOKIE: Optional[str] = None
 
+    # Respect robots.txt (set to false only if you have explicit authorization)
+    RESPECT_ROBOTS: bool = True
+
     # Caching
     CACHE_TTL_SECONDS: int = 600
     CACHE_MAXSIZE: int = 2048

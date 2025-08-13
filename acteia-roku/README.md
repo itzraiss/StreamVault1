@@ -58,3 +58,13 @@ Sideload:
 - Caching and rate limits are enabled. Adjust via `.env`.
 - The player uses `Video` node for HLS/MP4.
 - Search uses `roKeyboardScreen` integrated with SceneGraph.
+
+## Deploy no Hugging Face Spaces
+
+- Crie um Space (Docker) e suba o conteúdo de `backend/` na raiz do Space.
+- Use o `Dockerfile` já preparado para `$PORT`.
+- Configure variáveis no Space (Settings): `BASE_URL`, `CORS_ALLOW_ORIGINS`, `AUTH_COOKIE` (se necessário), etc.
+- O backend ficará acessível em `https://<seu-space>.hf.space`.
+- No Roku, edite `roku/source/Config.brs` e configure:
+  - `return "https://<seu-space>.hf.space"`
+- Search uses `roKeyboardScreen` integrated with SceneGraph.

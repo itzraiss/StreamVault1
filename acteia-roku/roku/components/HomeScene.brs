@@ -79,6 +79,7 @@ sub onSearch()
     data = ApiGet("/api/search?q=" + UrlEncode(q))
     if data = invalid then return
 
+    ' Build a single row for results
     ' Replace first row with search results
     row = CreateObject("roSGNode", "ContentNode")
     row.Title = "Busca: " + q
@@ -92,6 +93,13 @@ sub onSearch()
         row.AppendChild(itemNode)
     end for
 
+    ' If there is content, replace first row to avoid recreating entire tree
+    if m.rowList.content <> invalid and m.rowList.content.GetChildCount() > 0 then
+        m.rowList.content.RemoveChildIndex(0)
+    else
+        m.rowList.content = CreateObject("roSGNode", "ContentNode")
+    end if
+    m.rowList.content.InsertChild(0, row)
     content = CreateObject("roSGNode", "ContentNode")
     content.AppendChild(row)
     m.rowList.content = content

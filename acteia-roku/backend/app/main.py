@@ -1,6 +1,7 @@
 from __future__ import annotations
 from fastapi import FastAPI, Depends, Query, HTTPException, Response, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
 from slowapi import Limiter
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
@@ -49,6 +50,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.add_middleware(SlowAPIMiddleware)
+app.add_middleware(GZipMiddleware, minimum_size=512)
 
 
 @app.get("/healthz")

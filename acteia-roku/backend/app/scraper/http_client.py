@@ -38,6 +38,10 @@ class AsyncHttpClient:
         assert self._client is not None, "Client not started"
 
         # Robots.txt check (best-effort)
+        if settings.RESPECT_ROBOTS:
+            if not await self._robots.allowed(url):
+                logger.warning(f"Blocked by robots.txt: {url}")
+                return httpx.Response(status_code=451, content=b"blocked by robots.txt", request=httpx.Request("GET", url))
         if not await self._robots.allowed(url):
             logger.warning(f"Blocked by robots.txt: {url}")
             return httpx.Response(status_code=451, content=b"blocked by robots.txt", request=httpx.Request("GET", url))
